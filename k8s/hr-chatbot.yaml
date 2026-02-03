@@ -18,6 +18,12 @@ spec:
           image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-chatbot:latest
           ports:
             - containerPort: 8000
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: hr-common-config
+                  key: KAFKA_BROKERS
           envFrom:
             - configMapRef:
                 name: hr-common-config

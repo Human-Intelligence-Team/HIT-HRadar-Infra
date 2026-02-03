@@ -21,10 +21,3 @@ spec:
                 name: hr-gateway
                 port:
                   number: 80
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hr-frontend
-                port:
-                  number: 80

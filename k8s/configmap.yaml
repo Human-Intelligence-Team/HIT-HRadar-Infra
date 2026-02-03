@@ -5,8 +5,12 @@ metadata:
   namespace: hr-system
 data:
   SPRING_PROFILES_ACTIVE: prod
+  APP_ENV: prod
   VECTOR_INDEX_BASE_URL: "http://hr-chatbot:8000"
-  S3_BUCKET: "s3-hradar-bucket-prod"
+  S3_BUCKET: "s3-hradar-bucket"
   S3_REGION: "ap-northeast-2"
   CORS_ALLOWED_ORIGINS: "http://hr-platform.com" # Change to real domain
   KAFKA_BROKERS: "kafka-0.kafka-headless.hr-system.svc.cluster.local:9092"
+  QDRANT_HOST: "qdrant"
+  QDRANT_PORT: "6333"
+  QDRANT_COLLECTION: "hr-documents"
