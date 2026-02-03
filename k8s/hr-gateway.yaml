@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hr-gateway
+  namespace: hr-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hr-gateway
+  template:
+    metadata:
+      labels:
+        app: hr-gateway
+    spec:
+      containers:
+        - name: hr-gateway
+          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-gateway:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: hr-common-config
+            - secretRef:
+                name: hr-secrets
+#          livenessProbe:
+#            httpGet:
+#              path: /actuator/health
+#              port: 8080
+#            initialDelaySeconds: 60
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hr-gateway
+  namespace: hr-system
+spec:
+  selector:
+    app: hr-gateway
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

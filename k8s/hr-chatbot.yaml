@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hr-chatbot
+  namespace: hr-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hr-chatbot
+  template:
+    metadata:
+      labels:
+        app: hr-chatbot
+    spec:
+      containers:
+        - name: hr-chatbot
+          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-chatbot:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: hr-common-config
+            - secretRef:
+                name: hr-secrets
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hr-chatbot
+  namespace: hr-system
+spec:
+  selector:
+    app: hr-chatbot
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

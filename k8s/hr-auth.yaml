@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hr-auth
+  namespace: hr-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hr-auth
+  template:
+    metadata:
+      labels:
+        app: hr-auth
+    spec:
+      containers:
+        - name: hr-auth
+          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-auth:latest
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: hr-common-config
+            - secretRef:
+                name: hr-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hr-auth
+  namespace: hr-system
+spec:
+  selector:
+    app: hr-auth
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
