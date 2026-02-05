@@ -4,7 +4,7 @@ metadata:
   name: hr-notification
   namespace: hr-system
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: hr-notification
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: hr-notification
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-notification:latest
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-notification:49c47f8c150ded5e6239fbd19780dd6c84897f1c
           ports:
-            - containerPort: 8083
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: hr-common-config
@@ -30,9 +30,15 @@ metadata:
   name: hr-notification
   namespace: hr-system
 spec:
+  type: NodePort
   selector:
     app: hr-notification
   ports:
-    - protocol: TCP
-      port: 8083
-      targetPort: 8083
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8080

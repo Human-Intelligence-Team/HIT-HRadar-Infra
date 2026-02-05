@@ -4,7 +4,7 @@ metadata:
   name: hr-auth
   namespace: hr-system
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: hr-auth
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: hr-auth
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-auth:latest
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-auth:fcd18f30c70e1baae5b0e654437cd089722626b0
           ports:
-            - containerPort: 8081
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: hr-common-config
@@ -30,9 +30,15 @@ metadata:
   name: hr-auth
   namespace: hr-system
 spec:
+  type: NodePort
   selector:
     app: hr-auth
   ports:
-    - protocol: TCP
-      port: 8081
-      targetPort: 8081
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8080

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-chatbot
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-chatbot:latest
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-chatbot:b99467721a97280d48ea50c74c918c41b0e5fad1
           ports:
             - containerPort: 8000
           env:
@@ -32,7 +32,7 @@ spec:
 #          livenessProbe:
 #            httpGet:
 #              path: /health
-#              port: 8000
+#              port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -40,9 +40,15 @@ metadata:
   name: hr-chatbot
   namespace: hr-system
 spec:
+  type: NodePort
   selector:
     app: hr-chatbot
   ports:
-    - protocol: TCP
-      port: 8000
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+    - name: https
+      protocol: TCP
+      port: 443
       targetPort: 8000

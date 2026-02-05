@@ -6,11 +6,18 @@ metadata:
 data:
   SPRING_PROFILES_ACTIVE: prod
   APP_ENV: prod
-  VECTOR_INDEX_BASE_URL: "http://hr-chatbot:8000"
+  VECTOR_INDEX_BASE_URL: "http://hr-chatbot:80"
   S3_BUCKET: "s3-hradar-bucket"
   S3_REGION: "ap-northeast-2"
-  CORS_ALLOWED_ORIGINS: "http://hr-platform.com" # Change to real domain
+  CORS_ALLOWED_ORIGINS: "https://hradar.link"
+  CORS_ALLOWED_METHODS: "GET,POST,PUT,DELETE,OPTIONS"
+  CORS_ALLOWED_HEADERS: "*"
+  CORS_ALLOW_CREDENTIALS: "true"
   KAFKA_BROKERS: "kafka-0.kafka-headless.hr-system.svc.cluster.local:9092"
   QDRANT_HOST: "qdrant"
   QDRANT_PORT: "6333"
   QDRANT_COLLECTION: "hr-documents"
+  SPRING_MAIL_HOST: "smtp.gmail.com"
+  SPRING_MAIL_PORT: "587"
+  SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
+  SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"

@@ -4,7 +4,7 @@ metadata:
   name: hr-gateway
   namespace: hr-system
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: hr-gateway
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-gateway
-          image: 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/hr-gateway:latest
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-gateway:5c0645a34c935c54827a9183d96e217e85e3c162
           ports:
             - containerPort: 8080
           envFrom:
@@ -35,12 +35,15 @@ metadata:
   name: hr-gateway
   namespace: hr-system
 spec:
+  type: NodePort
   selector:
     app: hr-gateway
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
+      targetPort: 8080
+    - name: https
+      protocol: TCP
+      port: 443
       targetPort: 8080
