@@ -24,6 +24,16 @@ spec:
                 configMapKeyRef:
                   name: hr-common-config
                   key: KAFKA_BROKERS
+            - name: KAFKA_TOPIC
+              valueFrom:
+                configMapKeyRef:
+                  name: hr-common-config
+                  key: KAFKA_TOPIC_CHATBOT
+            - name: KAFKA_GROUP_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: hr-common-config
+                  key: KAFKA_GROUP_ID_CHATBOT
           envFrom:
             - configMapRef:
                 name: hr-common-config
