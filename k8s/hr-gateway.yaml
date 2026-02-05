@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-gateway
-          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-gateway:d5dbf7faac2681fcfd4d9fc200642ee6f722f5b2
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-gateway:4b6b1685a24e2e412f48975630dd65f56da7af96
           ports:
             - containerPort: 8080
           envFrom:
