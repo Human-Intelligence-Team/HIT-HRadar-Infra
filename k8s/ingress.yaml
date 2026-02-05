@@ -11,6 +11,9 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:850995576970:certificate/977533f6-cb89-46c9-84df-340e15b48239
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/group.name: hr-group
+
+    alb.ingress.kubernetes.io/healthcheck-path: /api/health
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
 spec:
   rules:
     - host: api.hradar.link
