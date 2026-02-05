@@ -13,6 +13,8 @@ data:
   CORS_ALLOWED_METHODS: "GET,POST,PUT,DELETE,OPTIONS"
   CORS_ALLOWED_HEADERS: "*"
   CORS_ALLOW_CREDENTIALS: "true"
+  REDIS_HOST: "hradar-cache-ro.8um4gz.ng.0001.apn2.cache.amazonaws.com"
+  REDIS_PORT: "6379"
   KAFKA_BROKERS: "kafka-0.kafka-headless.hr-system.svc.cluster.local:9092"
   QDRANT_HOST: "qdrant"
   QDRANT_PORT: "6333"
