@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-notification
-          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-notification:49c47f8c150ded5e6239fbd19780dd6c84897f1c
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-notification:70e56cb41c8789592ed8687c75b1ba17edf1ace4
           ports:
             - containerPort: 8080
           envFrom:

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-auth
-          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-auth:db4f67149f0a78076e4e40cf02a44a88f92ad686
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-auth:605dd6fc75a4fdd62ffaaec1540d20b6f3b8492a
           ports:
             - containerPort: 8080
           envFrom:
