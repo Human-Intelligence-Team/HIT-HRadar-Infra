@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-chatbot
-          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-chatbot:582cdb00ee2302247f74a77e7683af001498915f
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-chatbot:697b4a5158c67e1922641408b672cfbec2d0164e
           ports:
             - containerPort: 8000
           env:
