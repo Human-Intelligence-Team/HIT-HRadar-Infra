@@ -1,11 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: zookeeper
   namespace: hr-system
-  labels:
-    app: zookeeper
 spec:
+  serviceName: zookeeper
   replicas: 1
   selector:
     matchLabels:
@@ -25,21 +24,18 @@ spec:
               value: "2181"
             - name: ZOOKEEPER_TICK_TIME
               value: "2000"
-      nodeSelector:
-        # If needed, can add node selector
-        # kubernetes.io/os: linux
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: zookeeper
-  namespace: hr-system
-  labels:
-    app: zookeeper
-spec:
-  ports:
-    - port: 2181
-      targetPort: 2181
-      name: client
-  selector:
-    app: zookeeper
+            - name: ZOOKEEPER_DATA_DIR
+              value: "/var/lib/zookeeper/data"
+            - name: ZOOKEEPER_LOG_DIR
+              value: "/var/lib/zookeeper/log"
+          volumeMounts:
+            - name: zk-data
+              mountPath: /var/lib/zookeeper
+  volumeClaimTemplates:
+    - metadata:
+        name: zk-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
