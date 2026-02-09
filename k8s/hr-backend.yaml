@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hr-backend
-          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-core:38d04b4983f2383e693beb3baa5d6fa93b992c9d
+          image: 850995576970.dkr.ecr.ap-northeast-2.amazonaws.com/hradar-core:393ae0b1d488932a267bf7500efec729ee3d3424
           ports:
             - containerPort: 8080
           envFrom:
